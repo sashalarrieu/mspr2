@@ -5,11 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @SpringBootApplication
 @EnableWebSecurity
@@ -30,14 +35,17 @@ public class WebShopApplication extends SpringBootServletInitializer {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .requestMatchers("/api/webshop/**").permitAll() // Allow all for now, adjust as needed
-                .and()
-            .csrf().disable(); // Disable CSRF for simplicity
+	@Bean
+	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.authorizeHttpRequests().anyRequest().permitAll();
+		return http.build();
+	}
 
-        // Add your other security configurations here
+	@Configuration 
+class securityConfig {
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
     }
+}
 }
