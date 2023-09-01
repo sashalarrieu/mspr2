@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>WebShop</artifactId>
+	<artifactId>Revendeurs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>WebShop</name>
-	<description>API REST WEBSHOP</description>
+	<name>Revendeurs</name>
+	<description>API REVENDEURS</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -22,8 +22,9 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
+    		<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.5.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,11 +40,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<scope>test</scope>
-    	</dependency>
 	</dependencies>
 
 	<build>

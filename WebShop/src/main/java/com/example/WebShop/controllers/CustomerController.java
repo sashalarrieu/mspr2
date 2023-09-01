@@ -15,17 +15,12 @@ public class CustomerController {
 
     private CustomerRepository customerRepository;
 
-    @GetMapping
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
-
     @GetMapping("/test")
     public String testEndpoint() {
         return "Ça marche !";
     }
 
-    @GetMapping("/insert")
+    @GetMapping
     public List<Customer> createAndReturnCustomers() {
         // Créer des clients directement et les renvoyer sous forme de liste
     Customer customer1 = new Customer();
