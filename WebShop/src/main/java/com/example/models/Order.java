@@ -15,7 +15,13 @@ public class Order {
     @ManyToOne
     private Customer customer;
 
-    private String orderNumber;
+    private String detail;
+
+    public Order(int i, Customer customer1, String string) {
+    }
+
+    public Order() {
+    }
 
     // Getters and setters
     public Long getId() {
@@ -34,12 +40,12 @@ public class Order {
         this.customer = customer;
     }
 
-    public String getOrderNumber() {
-        return orderNumber;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }
 

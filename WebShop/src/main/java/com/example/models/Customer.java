@@ -14,6 +14,12 @@ public class Customer {
     private String name;
     private String email;
 
+    public Customer(long i, String string, String string2) {
+    }
+
+    public Customer() {
+    }
+
     // Getters and setters
     public Long getId() {
         return id;

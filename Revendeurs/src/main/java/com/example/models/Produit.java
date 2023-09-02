@@ -14,6 +14,12 @@ public class Produit {
     private String name;
     private String detail;
 
+    public Produit(long i, String string, String string2) {
+    }
+
+    public Produit() {
+    }
+
     // Getters and setters
     public Long getId() {
         return id;
