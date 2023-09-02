@@ -24,7 +24,6 @@ public class OrderController {
     @GetMapping
     public List<Order> createAndReturnOrders() {
         Customer customer1 = new Customer();
-        customer1.setName("John Doe");
         customer1.setEmail("john.doe@example.com");
     
         Customer customer2 = new Customer();
@@ -36,13 +35,13 @@ public class OrderController {
         // Settez les propriétés de la commande
         order1.setId((long) 1);
         order1.setCustomer(customer2);
-        order1.setOrderNumber("ORD123");
+        order1.setDetail("ORD123");
 
         Order order2 = new Order();
         // Settez les propriétés de la commande
         order2.setId((long) 2);
         order2.setCustomer(customer1);
-        order2.setOrderNumber("ORD124");
+        order2.setDetail("ORD124");
 
         return Arrays.asList(order1, order2);
     }
