@@ -1,11 +1,9 @@
 import { getData } from './http'
 
-export const urlAPI = 'https://615f5fb4f7254d0017068109.mockapi.io/api/v1/'
-
 // La liste des clients issue du CRM est accessible via l’API REST : /customers.
-// export function getCustomers() {
-// 	return getData('customers/')
-// }
+export function getCustomers() {
+	return getData('customers/')
+}
 
 // Une commande d’un client est accessible via l’API REST /customers/<customer id>.
 export function getCustomerByID(customerID: string) {
@@ -22,7 +20,7 @@ export function getOrderInOrders(customerID: string, orderID: string) {
 	return getData('customers/' + customerID + '/orders/' + orderID)
 }
 
-// La liste de produits d’une commande est accessible via l’API REST /customers/<customer id>/orders/<order id>/products.
+// La liste de produits d’une commande est accessible via l’API REST /customers/<customer id>/orders/<order id>/products. 
 export function getProductsByOrdersAndCustomerID(
 	customerID: string,
 	orderID: string,
