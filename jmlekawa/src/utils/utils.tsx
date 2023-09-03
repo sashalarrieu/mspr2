@@ -5,6 +5,16 @@
 // const QRCode = require('qrcode')
 // import emailjs from '@emailjs/browser';
 
+import { OrderType } from '../../ActionContext'
+
+export function totalPrix(order: OrderType): number {
+	let totalPrix = 0
+	order.products.map((product) => {
+		totalPrix += Number(product.price)
+	})
+	return totalPrix
+}
+
 // // Fonction pour générer une clé d'authentification aléatoire
 // const generateAuthKey = () => {
 // 	const length = 20 // Longueur de la clé en octets

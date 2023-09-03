@@ -1,19 +1,37 @@
-import { useNavigation } from '@react-navigation/native'
 import * as React from 'react'
-import { useContext, useEffect } from 'react'
-import { Text, View } from 'react-native'
-import { ActionContext } from '../../../../ActionContext'
+import { BottomNavigation } from 'react-native-paper'
+import CustomerStackNavigator from '../../../navigators/CustomerStackNavigator '
+import ProductsNavigation from '../../specific/ProductsNavigation/ProductsNavigation'
 
 const HomeScreen = () => {
-	const { connectedAccount } = useContext(ActionContext)
-	const navigation = useNavigation()
+	const [index, setIndex] = React.useState(0)
+	const [routes] = React.useState([
+		{
+			key: 'customers',
+			title: 'Compte',
+			focusedIcon: 'account',
+			unfocusedIcon: 'account-outline',
+		},
+
+		{
+			key: 'products',
+			title: 'Produits',
+			focusedIcon: 'cart',
+			unfocusedIcon: 'cart-outline',
+		},
+	])
+
+	const renderScene = BottomNavigation.SceneMap({
+		customers: CustomerStackNavigator,
+		products: ProductsNavigation,
+	})
 
 	return (
-		<>
-			<View>
-				<Text>Vous êtes bien authentifié {connectedAccount?.name} !</Text>
-			</View>
-		</>
+		<BottomNavigation
+			navigationState={{ index, routes }}
+			onIndexChange={setIndex}
+			renderScene={renderScene}
+		/>
 	)
 }
 

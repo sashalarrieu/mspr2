@@ -3,7 +3,12 @@ import * as React from 'react'
 import { useState } from 'react'
 import { Alert } from 'react-native'
 import { TextInput } from 'react-native-paper'
-import { ActionContext, accountTest } from '../../../../ActionContext'
+import {
+	AccountType,
+	ActionContext,
+	ConnectedAccountType,
+} from '../../../../ActionContext'
+import { getCustomers } from '../../../services/MockDataAPIFK'
 import Button from '../../common/Button/Button'
 import { LogInView } from './LogInScreen.styles'
 
@@ -45,13 +50,37 @@ const LogInScreen = () => {
 			return
 		}
 
-		// navigation.navigate('MainStack', {screen: 'Bienvenue'} )
-		setConnectedAccount(accountTest)
+		const account = verifyAccount(email)
 
-		navigation.reset({
-			index: 0,
-			routes: [{ name: 'MainStack' }],
-		})
+		setConnectedAccount(account)
+	}
+
+	function verifyAccount(email: string): ConnectedAccountType {
+		const listCustomers: AccountType[] = getCustomers()
+		console.log(listCustomers)
+		const foundAccount = listCustomers.find(
+			(account) => account.email === email,
+		)
+
+		if (foundAccount) {
+			return foundAccount
+		} else {
+			Alert.alert(
+				'',
+				"Le compte n'existe pas, vous pouvez toujours le créer",
+				[
+					{
+						text: 'Inscription',
+						onPress: () => {
+							navigation.navigate('Inscription')
+						},
+						style: 'cancel',
+					},
+					{ text: 'Retour' },
+				],
+			)
+			return undefined
+		}
 	}
 
 	return (
